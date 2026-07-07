@@ -1,24 +1,14 @@
-# Instructions
+# travishoover.dev
 
-## 1. install gitfolio
+Personal portfolio site for Travis Hoover, hosted on GitHub Pages at
+[travishoover.dev](https://travishoover.dev).
+
+Plain HTML and CSS — no build step. Edit `index.html` / `index.css` and push to
+`master` to deploy.
+
+## Local preview
+
 ```bash
-npm install -g gitfolio
+python3 -m http.server 8000
+# open http://localhost:8000
 ```
-
-## 2. run gitfolio
-```bash
-gitfolio ui
-```
-
-## 3. open browser
-```bash
-open http://localhost:3000
-```
-
-## 4. Fill out forms
-
-## 5. Click "Build" button
-
-## 6. Move the generated files to the root of your GitHub Pages repository
-
-## 7. Commit and push the changes
