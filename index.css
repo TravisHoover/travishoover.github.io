@@ -208,9 +208,10 @@ a {
   50% { transform: translateY(-12px); }
 }
 
-/* Sections */
-main section {
-  padding: 90px 28px;
+/* Sections — must out-rank .container's `padding: 0 28px` */
+main section.container {
+  padding-top: 90px;
+  padding-bottom: 90px;
 }
 
 .section-label {
@@ -455,7 +456,7 @@ html.js .reveal.visible {
 }
 
 /* Contact */
-.contact {
+main section.contact {
   text-align: center;
   padding-bottom: 120px;
 }
@@ -501,8 +502,8 @@ footer {
   color: var(--text);
 }
 
-/* Responsive */
-@media (max-width: 860px) {
+/* Responsive — 1000px so tablets in portrait get the stacked layout */
+@media (max-width: 1000px) {
   .hero {
     flex-direction: column-reverse;
     text-align: left;
@@ -524,8 +525,9 @@ footer {
     gap: 30px;
   }
 
-  main section {
-    padding: 64px 28px;
+  main section.container {
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
 
   .nav-links {
