@@ -18,6 +18,15 @@
 
 html {
   scroll-behavior: smooth;
+  /* Clear the 64px sticky nav when jumping to an anchor. */
+  scroll-padding-top: 88px;
+}
+
+/* scroll-margin on the targets themselves, so this holds regardless of
+   which element ends up being the scroll container. */
+section[id],
+header[id] {
+  scroll-margin-top: 88px;
 }
 
 body {
@@ -44,6 +53,32 @@ h1, h2, h3, .nav-logo {
 a {
   color: var(--cyan);
   text-decoration: none;
+}
+
+/* Keyboard focus — the default outline all but disappears on the dark cards. */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  /* fixed, not absolute — it must be reachable no matter how far down the page is. */
+  position: fixed;
+  left: 12px;
+  top: -60px;
+  z-index: 20;
+  padding: 10px 18px;
+  border-radius: 0 0 10px 10px;
+  background: var(--bg-raised);
+  border: 1px solid var(--violet);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 0;
 }
 
 .grad {
@@ -103,8 +138,16 @@ a {
   transition: color 0.15s ease;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.is-active {
   color: var(--text);
+}
+
+.nav-links a.is-active {
+  text-decoration: underline;
+  text-decoration-color: var(--violet);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
 }
 
 /* Hero */
@@ -243,6 +286,7 @@ html.js .reveal.visible {
 @media (prefers-reduced-motion: reduce) {
   html.js .reveal { opacity: 1; transform: none; transition: none; }
   .portrait-ring { animation: none; }
+  .skip-link { transition: none; }
   html { scroll-behavior: auto; }
 }
 
@@ -532,5 +576,25 @@ footer {
 
   .nav-links {
     gap: 16px;
+  }
+}
+
+/* Below ~560px the four nav links crowd the logo and run past the
+   container padding, so tighten the type and gutters to fit. */
+@media (max-width: 560px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .nav-links {
+    gap: 13px;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+  }
+
+  .nav-logo {
+    font-size: 1.25rem;
   }
 }
